@@ -3,6 +3,7 @@ import "./Weather.css";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 import { ThreeDots } from "react-loader-spinner";
+import Forecast from "./Forecast";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -57,6 +58,7 @@ export default function Weather(props) {
           <input type="submit" value="Search" className="submit-form col-3" />
         </form>
         <WeatherInfo data={weatherData} />
+        <Forecast />
       </div>
     );
   } else {

@@ -1,12 +1,11 @@
-.WeatherForecast{
+.forecast{
     text-align: center;
 
 }
-.WeatherForecast img{
-    width: 80px;
-    margin-top: 5px;
+.forecast-icon{
+    margin-top: 8px;
 }
-.weatherforecast-min{
+.min-temperature{
     opacity: 0.8;
     margin-left: 5px;
 }
