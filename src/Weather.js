@@ -16,6 +16,7 @@ export default function Weather(props) {
   function handleResponse(response) {
     setWeatherData({
       ready: true,
+      coordinates: response.data.coord,
       date: new Date(response.data.dt * 1000),
       city: response.data.name,
       temperature: response.data.main.temp,
@@ -24,8 +25,8 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       icon: response.data.weather[0].icon,
       description: response.data.weather[0].description,
-    });
 
+    });
     console.log(response.data);
   }
 
@@ -46,7 +47,7 @@ export default function Weather(props) {
 
   if (weatherData.ready) {
     return (
-      <div className="weather">
+      <div className="weather shadow">
         <form onSubmit={handleSubmit}>
           <input
             type="search"
@@ -58,7 +59,7 @@ export default function Weather(props) {
           <input type="submit" value="Search" className="submit-form col-3" />
         </form>
         <WeatherInfo data={weatherData} />
-        <Forecast />
+        <Forecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
