@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Forecast.css";
 import axios from "axios";
 import ForecastDataDay from "./ForecastDataDay";
-import { cleanup } from "@testing-library/react";
 
 export default function Forecast(props) {
     const [forecastData, setForecastData] = useState("");
