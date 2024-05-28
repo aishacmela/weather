@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Forecast.css";
 import axios from "axios";
 import ForecastDataDay from "./ForecastDataDay";
+import { cleanup } from "@testing-library/react";
 
 export default function Forecast(props) {
     const [forecastData, setForecastData] = useState("");
     const [loaded, setLoaded] = useState(false)
+
+    useEffect (() => {
+     //set loaded to false 
+     setLoaded(false);
+    }, [props.coordinates]);
+    //if the cordinates changes 
     
     function handleResponse(response){
       setLoaded(true);
@@ -16,8 +23,17 @@ export default function Forecast(props) {
   if(loaded){
      return (
        <div className="forecast">
-        
-         <ForecastDataDay data={forecastData[0]}/>
+         <div className="row mt-4">
+        {forecastData.map((dailyForecast, index) => {
+            if (index < 6){
+            return ( 
+            <div className="col" key={index}>
+              <ForecastDataDay data={dailyForecast} />
+            </div>);  
+            }
+           
+  })}
+        </div>
        </div>
        
      );
@@ -32,3 +48,10 @@ export default function Forecast(props) {
   }
    
 }
+
+
+
+
+
+
+
