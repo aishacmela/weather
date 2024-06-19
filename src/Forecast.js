@@ -28,8 +28,11 @@ export default function Forecast(props) {
             return ( 
             <div className="col" key={index}>
               <ForecastDataDay data={dailyForecast} />
-            </div>);  
-            }
+            </div>
+            );  
+        } else {
+          return null
+        }
            
   })}
         </div>
