@@ -11,7 +11,7 @@ export default function Weather(props) {
 
   useEffect(() => {
     search();
-  }, [search]); // Perform the initial search when the component mounts, the [] make sure that it searches once
+  }, []); // Perform the initial search when the component mounts, the [] make sure that it searches once
 
   function handleResponse(response) {
     setWeatherData({
