@@ -9,9 +9,6 @@ export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
-  useEffect(() => {
-    search();
-  }, []); // Perform the initial search when the component mounts, the [] make sure that it searches once
 
   function handleResponse(response) {
     setWeatherData({
@@ -27,7 +24,6 @@ export default function Weather(props) {
       description: response.data.weather[0].description,
 
     });
-    console.log(response.data);
   }
 
   function search() {
@@ -63,6 +59,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
+    search();
     return (
      
       <div className="loader">
