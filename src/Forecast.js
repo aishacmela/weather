@@ -1,17 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Forecast.css";
 import axios from "axios";
 import ForecastDataDay from "./ForecastDataDay";
 
 export default function Forecast(props) {
-    const [forecastData, setForecastData] = useState("");
+    const [forecastData, setForecastData] = useState([]);
     const [loaded, setLoaded] = useState(false)
 
-    useEffect (() => {
-     //set loaded to false 
-     setLoaded(false);
-    }, [props.coordinates]);
-    //if the cordinates changes 
+    
+   
+
+    function searchForecast(){
+      let apiKey = `6e6ec494746b5229a9f2d526478c924c`;
+      let longitude = props.coordinates.lon;
+      let latitude = props.coordinates.lat;
+      let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+      axios.get(apiUrl).then(handleResponse);
+
+    } 
     
     function handleResponse(response){
       setLoaded(true);
@@ -40,12 +47,7 @@ export default function Forecast(props) {
        
      );
   } else {
-  let apiKey = `ad793a6d772939c31783de5822791acf`;
-  let longitude = props.coordinates.lon;
-  let latitude = props.coordinates.lat;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-
-  axios.get(apiUrl).then(handleResponse);
+  searchForecast();
   return "Loading forecast data";
   }
    
